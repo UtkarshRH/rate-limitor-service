@@ -1,16 +1,19 @@
 import fastify from "fastify";
+import { tokenBucketRoutes } from "./routes/tokenbucket";
 
-export function buildApp(){
+export function buildApp() {
     const app = fastify({
-        logger : true,
+        logger: true,
     });
 
-    app.get("/helth", async () =>{
+    app.get("/health", async () => {
         return {
-            status : "ok",
-            message: "Rate limitor service is flying 🚀🚀🚀"
-        }
+            status: "ok",
+            message: "Rate limiter service is flying 🚀",
+        };
     });
+
+    app.register(tokenBucketRoutes);
 
     return app;
 }
