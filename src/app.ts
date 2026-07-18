@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { tokenBucketRoutes } from "./routes/tokenbucket";
+import { leakyBucketRoutes } from "./routes/leakyBucket";
 
 export function buildApp() {
     const app = fastify({
@@ -14,6 +15,8 @@ export function buildApp() {
     });
 
     app.register(tokenBucketRoutes);
+
+    app.register(leakyBucketRoutes);
 
     return app;
 }
